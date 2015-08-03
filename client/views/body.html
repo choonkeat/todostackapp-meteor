@@ -1,0 +1,50 @@
+<head>
+  <title>Todo List</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="pull-left">
+          {{> loginButtons}}
+        </div>
+
+        <div class="pull-right">
+          {{#each current_tags}}
+            {{> tag}}
+          {{/each}}
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <header class="page-header">
+          <h1>
+            TodoStack
+          </h1>
+
+          {{#if currentUser}}
+          <form class="js-add-task form form-horizontal">
+            <input type="text" name="text" placeholder="Type to add new tasks #supports #hashtags" class="form-control"/>
+          </form>
+          {{/if}}
+        </header>
+      </div>
+    </div>
+
+    {{#if currentUser}}
+    <ul class="list-tasks list-group">
+      {{#each tasks}}
+        {{> task}}
+      {{/each}}
+    </ul>
+    {{/if}}
+  </div>
+</body>

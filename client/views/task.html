@@ -1,0 +1,60 @@
+<template name="task">
+  <li class="list-group-item clearfix">
+    <input type="radio" name="active" checked="{{checked}}" class="js-set-active radio_button">
+    <strong class="js-task-title">
+      {{text}}
+      {{#each tags}}
+        {{> tag}}
+      {{/each}}
+    </strong>
+    {{#if toggled_task}}
+      <div class="list-entries">
+        <ul class="nav nav-tabs">
+          <li role="presentation" class="active"><a href="#hourly_{{_id}}" data-toggle="tab">Hourly</a></li>
+          <li role="presentation"><a href="#daily_{{_id}}" data-toggle="tab">Daily</a></li>
+          <li role="presentation"><a href="#weekly_{{_id}}" data-toggle="tab">Weekly</a></li>
+          <li role="presentation"><a href="#monthly_{{_id}}" data-toggle="tab">Monthly</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="hourly_{{_id}}">
+            <table class="table table-striped">
+              <tbody>
+                {{#each task_aggregated_entries 'hourly'}}
+                  {{> entry}}
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane" id="daily_{{_id}}">
+            <table class="table table-striped">
+              <tbody>
+                {{#each task_aggregated_entries 'daily'}}
+                  {{> entry}}
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane" id="weekly_{{_id}}">
+            <table class="table table-striped">
+              <tbody>
+                {{#each task_aggregated_entries 'weekly'}}
+                  {{> entry}}
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane" id="monthly_{{_id}}">
+            <table class="table table-striped">
+              <tbody>
+                {{#each task_aggregated_entries 'monthly'}}
+                  {{> entry}}
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <span class="js-delete btn btn-xs btn-danger pull-right"><i class="fa fa-times"></i></span>
+      </div>
+    {{/if}}
+  </li>
+</template>

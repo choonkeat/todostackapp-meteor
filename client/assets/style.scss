@@ -1,0 +1,19 @@
+/* CSS declarations go here */
+
+body {
+  .list-group-item strong {
+    cursor: pointer;
+  }
+  input.radio_button {
+    margin-right: 0.5em;
+  }
+  .js-task-title .js-untag {
+    display: none;
+  }
+  .list-entries {
+    margin-top: 1em;
+  }
+  .tab-pane {
+    margin-top: 1em;
+  }
+}
