@@ -20,7 +20,7 @@ Template.task.helpers({
     Entry.find(selector, { sort: {startedAt: -1} }).forEach(function(document) {
       var date;
       if (datetype == 'hourly') {
-        date = moment(document.startedAt).format('ddd ha');
+        date = moment(document.startedAt).format('ddd h:mm a');
       } else if (datetype == 'daily') {
         date = moment(document.startedAt).format('ddd ll');
       } else if (datetype == 'weekly') {
