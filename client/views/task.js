@@ -3,6 +3,7 @@ Template.task.helpers({
     return (Session.get("toggle_task") == this._id);
   },
   task_aggregated_entries: function(datetype) {
+    var now = new Date();
     var result = []
     var tuple = {};
 
@@ -32,10 +33,8 @@ Template.task.helpers({
         tuple = { date: date, seconds: 0 };
         result.push(tuple);
       }
-      if (document.endedAt) {
-        tuple.seconds = tuple.seconds +
-          ((document.endedAt.getTime() - document.startedAt.getTime()) / (1000));
-      }
+      tuple.seconds = tuple.seconds +
+        (((document.endedAt || now).getTime() - document.startedAt.getTime()) / (1000));
     });
     return result;
   }
