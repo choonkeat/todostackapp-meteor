@@ -1,9 +1,8 @@
 <template name="tag">
   <span class="label label-info">
-    <a href="#{{this}}" class="js-untag">
-      <i class="fa fa-times"></i>
+    <a href="{{share_url this}}" title="Share this secret url" target="_blank">
+      {{text}}
     </a>
-    <span class="js-tag">{{this}}</span>
   </span>
   &nbsp;
 </template>

@@ -30,21 +30,21 @@
             TodoStack
           </h1>
 
-          {{#if currentUser}}
-          <form class="js-add-task form form-horizontal">
-            <input type="text" name="text" placeholder="Type to add new tasks #supports #hashtags" class="form-control"/>
-          </form>
-          {{/if}}
+          {{#unless read_only}}
+            {{#if currentUser}}
+            <form class="js-add-task form form-horizontal">
+              <input type="text" name="text" placeholder="Type to add new tasks #supports #hashtags" class="form-control"/>
+            </form>
+            {{/if}}
+          {{/unless}}
         </header>
       </div>
     </div>
 
-    {{#if currentUser}}
     <ul class="list-tasks list-group">
       {{#each tasks}}
         {{> task}}
       {{/each}}
     </ul>
-    {{/if}}
   </div>
 </body>

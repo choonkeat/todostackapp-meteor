@@ -1,9 +1,14 @@
 Meteor.methods({
   createTask: function(string) {
+    var secret = Meteor.user().secret;
     var parts = string.split(/\s*#/);
+    var text = parts.shift();
+    var tags = parts.map(function(word, index) {
+      return { text: word, secret: CryptoJS.SHA1(word + Meteor.userId() + secret).toString() };
+    });
     var taskId = Task.insert({
-      text: parts.shift(),
-      tags: parts,
+      text: text,
+      tags: tags,
       userId: Meteor.userId()
     });
     Meteor.call('startTask', Task.findOne({ _id: taskId }));

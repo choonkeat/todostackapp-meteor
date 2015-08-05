@@ -7,7 +7,12 @@ Template.task.helpers({
     var result = []
     var tuple = {};
 
+    var params = common.getUrlParams(window.location);
     var selector = { userId: Meteor.userId(), taskId: this._id };
+    if (params.user && params.secret) {
+      selector['userId'] = params.user;
+    }
+
     if (datetype == 'hourly') {
       selector['startedAt'] = { $gte : moment().startOf('day').subtract(1, 'day').toDate() };
     } else if (datetype == 'daily') {

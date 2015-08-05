@@ -1,12 +1,16 @@
 <template name="task">
   <li class="list-group-item clearfix">
-    <input type="radio" name="active" checked="{{checked}}" class="js-set-active radio_button">
+    {{#unless read_only}}
+      <input type="radio" name="active" checked="{{checked}}" class="js-set-active radio_button">
+    {{/unless}}
     <strong class="js-task-title">
       {{text}}
+    </strong>
+    {{#unless read_only}}
       {{#each tags}}
         {{> tag}}
       {{/each}}
-    </strong>
+    {{/unless}}
     {{#if toggled_task}}
       <div class="list-entries">
         <ul class="nav nav-tabs">
@@ -53,7 +57,9 @@
             </table>
           </div>
         </div>
-        <span class="js-delete btn btn-xs btn-danger pull-right"><i class="fa fa-times"></i></span>
+        {{#unless read_only}}
+          <span class="js-delete btn btn-xs btn-danger pull-right"><i class="fa fa-times"></i> Hide</span>
+        {{/unless}}
       </div>
     {{/if}}
   </li>

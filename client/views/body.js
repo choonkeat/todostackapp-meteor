@@ -5,9 +5,13 @@ Template.body.helpers({
   },
   tasks: function () {
     // Show newest tasks at the top
-
+    var params = common.getUrlParams(window.location);
     var selector = { userId: Meteor.userId(), deletedAt: null };
-    if (Session.get("tag")) selector['tags'] = Session.get("tag");
+    if (params.user && params.secret) {
+      selector['userId'] = params.user;
+      selector["tags.secret"] = params.secret;
+    }
+    if (Session.get("tag")) selector.tags = Session.get("tag");
 
     return Task.find(selector, { sort: { startedAt: -1 } }).map(function(document, index){
       document.checked = (index == 0);
@@ -18,12 +22,6 @@ Template.body.helpers({
 });
 
 Template.body.events({
-  "click .js-untag": function(event) {
-    Session.set("tag", null);
-  },
-  "click .js-tag": function(event) {
-    Session.set("tag", this.toString());
-  },
   "click .js-set-active": function(event) {
     if (this.index != 0) Meteor.call('startTask', this);
   },

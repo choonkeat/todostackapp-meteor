@@ -12,7 +12,9 @@ client
     ├── task.html
     └── task.js
 server
+├── accounts.js
 └── methods.js
 common
+├── common.js
 └── models.js
 ```

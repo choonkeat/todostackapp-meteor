@@ -7,3 +7,12 @@ Template.registerHelper('hoursOrMinutes', function(seconds) {
     return (seconds / 3600).toFixed(0) + " hours";
   }
 });
+
+Template.registerHelper('share_url', function(tag) {
+  return '?user=' + encodeURIComponent(Meteor.userId()) + '&secret=' + encodeURIComponent(tag.secret);
+});
+
+Template.registerHelper('read_only', function() {
+  var params = common.getUrlParams(window.location);
+  return params.user;
+});
